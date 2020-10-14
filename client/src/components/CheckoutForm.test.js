@@ -11,7 +11,7 @@ test("form header renders", () => {
         //Arrange
         render(<App/>)
         //Act
-        screen.getByText(/react plants/)
+        screen.getByText(react plants)
 
 
         //Assert
