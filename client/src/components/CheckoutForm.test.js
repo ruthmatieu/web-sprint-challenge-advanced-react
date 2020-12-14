@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, getByAltText, fireEvent } from "@testing-library/react";
+import { render, screen, userEvent } from "@testing-library/react";
 import CheckoutForm from "./CheckoutForm";
 
 //comps
@@ -11,7 +11,7 @@ test("form header renders", () => {
         //Arrange
         render(<App/>)
         //Act
-        const nav = screen.getByText(/React Plants/)
+        const nav = screen.getByText(/React Plants/i)
         //Assert
         expect(nav).toBeInTheDocument();
     
@@ -23,5 +23,5 @@ test("form shows success message on submit with form details", () => {
         //Act
         const success = screen.getAllByTestId('successMessage')
         //Assert
-        fireEvent.click(getByText('Checkout', success));
+        userEvent.click(getByText(/checkout/i, success));
 });

@@ -7,7 +7,17 @@ import CheckoutForm from "./components/CheckoutForm";
 
 import "./App.css";
 
+//
+import {ThemeProvider} from "styled-components";
+import { GlobalStyles } from "./components/globalStyles";
+import { lightTheme, darkTheme } from "./components/Themes";
+
 function App() {
+  //lightmode theme
+  const [theme, setTheme] = useState('light');
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light')
+  };
   // array of plants that have been added to the cart
   const [cart, setCart] = useState([]);
 
@@ -22,7 +32,10 @@ function App() {
   };
 
   return (
-    <div>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <>
+      <GlobalStyles/>
+      <button onClick={themeToggler}>Toggle Theme</button>
       <Router>
         <nav className="container">
           <h1>
@@ -61,7 +74,8 @@ function App() {
         />
         <Route path="/checkout" component={CheckoutForm} />
       </Router>
-    </div>
+      </>
+    </ThemeProvider>
   );
 }
 
